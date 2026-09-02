@@ -1,0 +1,271 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1d2939;
+}
+
+header {
+    background: linear-gradient(120deg, #12355b, #087e8b);
+    color: white;
+    padding: 24px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1,
+header p {
+    margin: 0;
+}
+
+header p {
+    margin-top: 7px;
+    color: #d7f4f6;
+}
+
+.report-button,
+button {
+    background: #f9b233;
+    color: #17222e;
+    padding: 11px 16px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+main {
+    width: min(1180px, 90%);
+    margin: auto;
+}
+
+.hero {
+    text-align: center;
+    padding: 35px 10px 20px;
+}
+
+.hero h2 {
+    margin-bottom: 8px;
+    color: #12355b;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 20px 0 30px;
+}
+
+.stat-card,
+.form-panel,
+.info-panel,
+.issue-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 14px rgba(20, 40, 70, 0.08);
+}
+
+.stat-card {
+    text-align: center;
+    padding: 18px;
+    border-bottom: 4px solid #087e8b;
+}
+
+.stat-card span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #087e8b;
+}
+
+.stat-card p {
+    margin: 7px 0 0;
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 22px;
+    margin-bottom: 35px;
+}
+
+.form-panel,
+.info-panel {
+    padding: 24px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 14px 0 6px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.form-panel button {
+    margin-top: 16px;
+}
+
+.step {
+    border-left: 4px solid #087e8b;
+    padding-left: 12px;
+    margin: 18px 0;
+}
+
+.step p {
+    margin: 6px 0;
+    color: #52616b;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.section-heading h2,
+.section-heading p {
+    margin: 0;
+}
+
+.section-heading p {
+    margin-top: 5px;
+    color: #667085;
+}
+
+.section-heading select {
+    width: 180px;
+}
+
+.issue-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-bottom: 40px;
+}
+
+.issue-card {
+    padding: 20px;
+}
+
+.issue-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.category,
+.status {
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.category {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+.status {
+    background: #fff7d6;
+    color: #8a6200;
+}
+
+.location {
+    color: #087e8b;
+    font-weight: bold;
+}
+
+.vote-button {
+    background: #e7f5f4;
+    color: #05636d;
+    margin: 8px 0;
+}
+
+.status-form {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.status-form select {
+    width: auto;
+}
+
+.status-form button,
+.comments button {
+    background: #12355b;
+    color: white;
+}
+
+.comments {
+    border-top: 1px solid #e4e7ec;
+    margin-top: 12px;
+    padding-top: 12px;
+}
+
+.comments h4 {
+    margin: 0 0 10px;
+}
+
+.comment {
+    background: #f8fafc;
+    padding: 8px;
+    margin: 7px 0;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.comments form {
+    display: grid;
+    grid-template-columns: 1fr 2fr auto;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    background: #12355b;
+    color: white;
+    padding: 18px;
+    margin-top: 30px;
+}
+
+@media (max-width: 700px) {
+    header,
+    .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .stats,
+    .two-column,
+    .issue-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .comments form {
+        grid-template-columns: 1fr;
+    }
+}

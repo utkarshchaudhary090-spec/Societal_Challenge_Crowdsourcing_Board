@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicVoice | Community Challenge Board</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div>
+            <h1>CivicVoice</h1>
+            <p>Raise issues. Build solutions. Improve communities.</p>
+        </div>
+        <a class="report-button" href="#report-form">+ Report an Issue</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Your voice can improve your neighbourhood.</h2>
+            <p>Report civic challenges, support important issues, and propose practical solutions.</p>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <span>{{ total_issues }}</span>
+                <p>Total Issues</p>
+            </div>
+            <div class="stat-card">
+                <span>{{ total_votes }}</span>
+                <p>Community Votes</p>
+            </div>
+            <div class="stat-card">
+                <span>{{ resolved_issues }}</span>
+                <p>Resolved Issues</p>
+            </div>
+        </section>
+
+        <section class="two-column">
+            <div class="form-panel" id="report-form">
+                <h2>Report a Local Issue</h2>
+
+                <form action="/add-issue" method="POST">
+                    <label>Issue Title</label>
+                    <input type="text" name="title" placeholder="Broken streetlight near bus stop" required>
+
+                    <label>Category</label>
+                    <select name="category" required>
+                        <option value="Sanitation">Sanitation</option>
+                        <option value="Infrastructure">Infrastructure</option>
+                        <option value="Water">Water</option>
+                        <option value="Road Safety">Road Safety</option>
+                        <option value="Public Safety">Public Safety</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label>Location</label>
+                    <input type="text" name="location" placeholder="Sector 5, Main Road" required>
+
+                    <label>Describe the problem</label>
+                    <textarea name="description" placeholder="Explain the problem..." required></textarea>
+
+                    <button type="submit">Submit Issue</button>
+                </form>
+            </div>
+
+            <div class="info-panel">
+                <h2>How It Works</h2>
+
+                <div class="step">
+                    <b>1. Report</b>
+                    <p>Citizens report local civic problems.</p>
+                </div>
+
+                <div class="step">
+                    <b>2. Prioritize</b>
+                    <p>The community upvotes urgent issues.</p>
+                </div>
+
+                <div class="step">
+                    <b>3. Collaborate</b>
+                    <p>People comment and suggest solutions.</p>
+                </div>
+
+                <div class="step">
+                    <b>4. Track</b>
+                    <p>Status updates make progress visible.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="issues-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Community Issues</h2>
+                    <p>Most-supported issues appear first.</p>
+                </div>
+
+                <form method="GET">
+                    <select name="category" onchange="this.form.submit()">
+                        <option value="All">All Categories</option>
+
+                        {% for item in categories %}
+                        <option value="{{ item['category'] }}"
+                            {% if selected_category == item['category'] %}selected{% endif %}>
+                            {{ item["category"] }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+
+            <div class="issue-grid">
+                {% for issue in issues %}
+                <article class="issue-card">
+                    <div class="issue-top">
+                        <span class="category">{{ issue["category"] }}</span>
+                        <span class="status">{{ issue["status"] }}</span>
+                    </div>
+
+                    <h3>{{ issue["title"] }}</h3>
+                    <p class="location">📍 {{ issue["location"] }}</p>
+                    <p>{{ issue["description"] }}</p>
+
+                    <form action="/upvote/{{ issue['id'] }}" method="POST">
+                        <button class="vote-button" type="submit">
+                            ▲ Upvote ({{ issue["votes"] }})
+                        </button>
+                    </form>
+
+                    <form class="status-form" action="/change-status/{{ issue['id'] }}" method="POST">
+                        <select name="status">
+                            <option {% if issue["status"] == "Open" %}selected{% endif %}>Open</option>
+                            <option {% if issue["status"] == "In Progress" %}selected{% endif %}>In Progress</option>
+                            <option {% if issue["status"] == "Resolved" %}selected{% endif %}>Resolved</option>
+                        </select>
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="/delete-issue/{{ issue['id'] }}" method="POST">
+    <button type="submit">Delete Issue</button>
+</form>
+
+                    <div class="comments">
+                        <h4>Community Solutions</h4>
+
+                        {% for comment in comments_by_issue.get(issue["id"], []) %}
+                        <div class="comment">
+                            <b>{{ comment["name"] }}:</b> {{ comment["message"] }}
+                        </div>
+                        {% endfor %}
+
+                        <form action="/add-comment/{{ issue['id'] }}" method="POST">
+                            <input type="text" name="name" placeholder="Your name" required>
+                            <input type="text" name="message" placeholder="Suggest a solution..." required>
+                            <button type="submit">Post</button>
+                        </form>
+                    </div>
+                </article>
+
+                {% else %}
+                <p>No issues found in this category.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        CivicVoice • A crowdsourcing board for stronger local communities
+    </footer>
+    `<script src="{{ url_for('static', filename='script.js') }}"></script>` — this must go BEFORE `</body>`
+</body>
+</html>
