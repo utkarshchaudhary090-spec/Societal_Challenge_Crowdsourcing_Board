@@ -1,7 +1,4 @@
-/* ================================================
-   CivicVoice — High-Tech Styles (Pure CSS, no JS)
-   Matched to actual index.html structure
-   ================================================ */
+/* CivicVoice visual system */
 
 * {
   box-sizing: border-box;
@@ -520,4 +517,91 @@ footer {
     padding-left: 18px;
     padding-right: 18px;
   }
+}
+
+/* Refined civic editorial layer */
+:root {
+  --ink: #172b2b;
+  --muted: #657574;
+  --paper: #f4f1e8;
+  --panel: #fffdf8;
+  --line: #d9ded6;
+  --teal: #0f7774;
+  --teal-dark: #095453;
+  --coral: #e56d4f;
+  --yellow: #f4c95d;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: radial-gradient(#c8d6ca 0.8px, transparent 0.8px);
+  background-size: 18px 18px;
+  font-family: 'DM Sans', sans-serif;
+  animation: pageIn 0.7s ease both;
+}
+
+header {
+  max-width: none;
+  padding: 28px max(24px, calc((100% - 1180px) / 2));
+  color: #fffdf8;
+  background: var(--teal-dark);
+  border-bottom: 5px solid var(--yellow);
+}
+
+header h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+header h1 { font-size: clamp(1.8rem, 4vw, 2.45rem); letter-spacing: -0.04em; }
+header p { color: #b9d6ce; }
+.report-button { color: var(--ink); background: var(--yellow); border-radius: 4px; box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.16); }
+.report-button:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.16); }
+
+main { max-width: 1180px; margin: 0 auto; }
+.hero { padding: 72px 24px 42px; animation: riseIn 0.65s 0.1s ease both; }
+.hero h2 { max-width: 680px; margin: 0 auto 12px; color: var(--ink); font-size: clamp(2rem, 5vw, 3.65rem); line-height: 1.02; letter-spacing: -0.06em; }
+.hero p, .section-heading p { color: var(--muted); }
+.stats { gap: 14px; padding: 0 24px 30px; }
+.stat-card, .form-panel, .info-panel, .issue-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 18px 45px rgba(27, 52, 48, 0.09); }
+.stat-card { animation: riseIn 0.55s ease both; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.stat-card:nth-child(2) { animation-delay: 0.1s; }
+.stat-card:nth-child(3) { animation-delay: 0.2s; }
+.stat-card:hover, .issue-card:hover { transform: translateY(-5px); box-shadow: 0 24px 48px rgba(27, 52, 48, 0.15); }
+.stat-card span { color: var(--teal); font-family: 'Space Grotesk', sans-serif; }
+.stat-card p, .issue-card p { color: var(--muted); }
+
+.two-column { grid-template-columns: 1.15fr 0.85fr; gap: 18px; padding: 0 24px 54px; }
+.form-panel, .info-panel { padding: 30px; }
+.form-panel h2, .info-panel h2, .section-heading h2 { letter-spacing: -0.04em; }
+.form-panel label { color: var(--muted); font-size: 0.83rem; }
+.form-panel input[type="text"], .form-panel textarea, .form-panel select, .section-heading select, .status-form select, .comments form input { color: var(--ink); background: #f7f6ef; border: 1px solid var(--line); border-radius: 4px; font-family: 'DM Sans', sans-serif; }
+.form-panel input:focus, .form-panel textarea:focus, .form-panel select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(15, 119, 116, 0.18); }
+.form-panel button[type="submit"] { color: #fff; background: var(--coral); border-radius: 4px; }
+.form-panel button[type="submit"]:hover { background: #cf573d; box-shadow: 0 8px 18px rgba(229, 109, 79, 0.25); }
+.info-panel { color: #fff; background: var(--teal); }
+.info-panel h2 { color: #fff; }
+.step { border-left-color: var(--yellow); }
+.step p { color: #c6e0d8; }
+
+.issues-section { padding: 0 24px 58px; }
+.issue-grid { gap: 18px; }
+.issue-card { animation: riseIn 0.55s ease both; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.issue-grid > *:nth-child(2) { animation-delay: 0.08s; }
+.issue-grid > *:nth-child(3) { animation-delay: 0.16s; }
+.issue-grid > *:nth-child(4) { animation-delay: 0.24s; }
+.issue-top .category { color: var(--teal); background: #e0f1e9; border-color: #b9dace; border-radius: 3px; }
+.issue-top .status { color: #80631b; background: #fff2c8; border-color: #ecd78d; border-radius: 3px; }
+.vote-button { color: var(--teal); background: #e0f1e9; border-color: #b9dace; border-radius: 4px; }
+.vote-button:hover { color: #fff; background: var(--teal); }
+.status-form button, .comments form button { background: var(--teal); border-radius: 4px; }
+.status-form button:hover, .comments form button:hover { background: var(--teal-dark); }
+.comments { border-top-color: var(--line); }
+.comment { color: var(--muted); background: #f4f5ed; border-left: 3px solid var(--yellow); border-radius: 0; }
+.comment b { color: var(--ink); }
+footer { color: var(--muted); border-top-color: var(--line); }
+
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes riseIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
